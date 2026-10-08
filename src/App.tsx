@@ -375,7 +375,7 @@ function App() {
   const [audioPlaying, setAudioPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
   const photoClicksRef = useRef(0)
-  const photoTimerRef = useRef<ReturnType<typeof setTimeout>>()
+  const photoTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
 
   const [lang, setLang] = useState<Lang>(() => {
     try { return (localStorage.getItem('lang') as Lang) || 'nl' } catch { return 'nl' }
