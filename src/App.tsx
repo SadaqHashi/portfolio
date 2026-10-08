@@ -17,11 +17,23 @@ const skillItems = [
 
 const roles = ['Fullstack Developer', 'Roblox Game Dev', 'Student @ AP Hogeschool']
 
-const ACCENT_THEMES = [
-  { name: 'purple', accent: '#8b5cf6', accent2: '#06b6d4', accent3: '#f472b6' },
-  { name: 'cyan', accent: '#06b6d4', accent2: '#8b5cf6', accent3: '#34d399' },
-  { name: 'pink', accent: '#ec4899', accent2: '#8b5cf6', accent3: '#f59e0b' },
-  { name: 'green', accent: '#10b981', accent2: '#06b6d4', accent3: '#f472b6' },
+const THEMES = [
+  {
+    id: 'default', dot: '#8b5cf6', scheme: 'dark',
+    vars: { '--bg': '#08051a', '--bg-2': '#0f0b2a', '--bg-card': 'rgba(15,11,42,0.65)', '--text': '#94a3b8', '--text-h': '#f1f5f9', '--border': 'rgba(139,92,246,0.08)', '--accent': '#8b5cf6', '--accent-2': '#06b6d4', '--accent-3': '#f472b6', '--accent-bg': 'rgba(139,92,246,0.06)', '--shadow': '0 10px 40px rgba(0,0,0,0.5)', '--nav-bg': 'rgba(8,5,26,0.6)', '--grid-color': 'rgba(139,92,246,0.07)' },
+  },
+  {
+    id: 'editorial', dot: '#d97757', scheme: 'light',
+    vars: { '--bg': '#faf9f5', '--bg-2': '#ffffff', '--bg-card': 'rgba(255,255,255,0.8)', '--text': '#5a5850', '--text-h': '#141413', '--border': 'rgba(217,119,87,0.12)', '--accent': '#d97757', '--accent-2': '#6a9bcc', '--accent-3': '#788c5d', '--accent-bg': 'rgba(217,119,87,0.04)', '--shadow': '0 10px 40px rgba(217,119,87,0.08)', '--nav-bg': 'rgba(250,249,245,0.8)', '--grid-color': 'rgba(217,119,87,0.05)' },
+  },
+  {
+    id: 'modern', dot: '#84cc16', scheme: 'dark',
+    vars: { '--bg': '#0b0f19', '--bg-2': '#111827', '--bg-card': 'rgba(17,24,39,0.7)', '--text': '#94a3b8', '--text-h': '#f1f5f9', '--border': 'rgba(132,204,22,0.08)', '--accent': '#84cc16', '--accent-2': '#f59e0b', '--accent-3': '#38bdf8', '--accent-bg': 'rgba(132,204,22,0.05)', '--shadow': '0 10px 40px rgba(0,0,0,0.5)', '--nav-bg': 'rgba(11,15,25,0.7)', '--grid-color': 'rgba(132,204,22,0.05)' },
+  },
+  {
+    id: 'luxury', dot: '#c5a059', scheme: 'dark',
+    vars: { '--bg': '#0d0d0d', '--bg-2': '#161616', '--bg-card': 'rgba(22,22,22,0.75)', '--text': '#a0a0a0', '--text-h': '#e2e8f0', '--border': 'rgba(197,160,89,0.1)', '--accent': '#c5a059', '--accent-2': '#e2e8f0', '--accent-3': '#a78bfa', '--accent-bg': 'rgba(197,160,89,0.04)', '--shadow': '0 10px 40px rgba(0,0,0,0.6)', '--nav-bg': 'rgba(13,13,13,0.7)', '--grid-color': 'rgba(197,160,89,0.04)' },
+  },
 ]
 
 /* ── Custom Cursor ── */
@@ -380,31 +392,26 @@ function App() {
   const [lang, setLang] = useState<Lang>(() => {
     try { return (localStorage.getItem('lang') as Lang) || 'nl' } catch { return 'nl' }
   })
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    try { return (localStorage.getItem('theme') as 'dark' | 'light') || 'dark' } catch { return 'dark' }
+  const [themeIdx, setThemeIdx] = useState(() => {
+    try { const saved = localStorage.getItem('themeIdx'); return saved ? Number(saved) : 0 } catch { return 0 }
   })
-  const [accentIdx, setAccentIdx] = useState(0)
 
   const tx = lang === 'nl' ? nl : en
-  const toggleTheme = useCallback(() => setTheme(t => t === 'dark' ? 'light' : 'dark'), [])
   const toggleLang = useCallback(() => setLang(l => l === 'nl' ? 'en' : 'nl'), [])
+  const cycleTheme = useCallback(() => setThemeIdx(i => (i + 1) % THEMES.length), [])
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    try { localStorage.setItem('theme', theme) } catch {}
-  }, [theme])
+    const t = THEMES[themeIdx]
+    const root = document.documentElement
+    root.setAttribute('data-theme', t.scheme === 'light' ? 'light' : 'dark')
+    Object.entries(t.vars).forEach(([k, v]) => root.style.setProperty(k, v))
+    root.style.setProperty('color-scheme', t.scheme)
+    try { localStorage.setItem('themeIdx', String(themeIdx)) } catch {}
+  }, [themeIdx])
 
   useEffect(() => {
     try { localStorage.setItem('lang', lang) } catch {}
   }, [lang])
-
-  useEffect(() => {
-    const a = ACCENT_THEMES[accentIdx]
-    const r = document.documentElement.style
-    r.setProperty('--accent', a.accent)
-    r.setProperty('--accent-2', a.accent2)
-    r.setProperty('--accent-3', a.accent3)
-  }, [accentIdx])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -478,15 +485,14 @@ function App() {
         </nav>
         <div className="nav-controls">
           <button className="toggle-btn" onClick={toggleLang} aria-label="Switch language">{lang === 'nl' ? 'EN' : 'NL'}</button>
-          <button className="toggle-btn" onClick={toggleTheme} aria-label="Toggle theme">{theme === 'dark' ? '☀' : '☾'}</button>
           <div className="accent-picker">
-            {ACCENT_THEMES.map((t, i) => (
+            {THEMES.map((t, i) => (
               <button
-                key={t.name}
-                className={`accent-dot ${i === accentIdx ? 'active' : ''}`}
-                style={{ background: t.accent }}
-                onClick={() => setAccentIdx(i)}
-                aria-label={`${t.name} theme`}
+                key={t.id}
+                className={`accent-dot ${i === themeIdx ? 'active' : ''}`}
+                style={{ background: t.dot }}
+                onClick={() => setThemeIdx(i)}
+                aria-label={`${t.id} theme`}
               />
             ))}
           </div>
@@ -640,7 +646,7 @@ function App() {
         onClose={() => setCmdOpen(false)}
         tx={tx}
         onNav={(id) => { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }) }}
-        onTheme={toggleTheme}
+        onTheme={cycleTheme}
         onLang={toggleLang}
       />
 
