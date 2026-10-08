@@ -19,10 +19,6 @@ const roles = ['Fullstack Developer', 'Roblox Game Dev', 'Student @ AP Hogeschoo
 
 const THEMES = [
   {
-    id: 'default', dot: '#8b5cf6', scheme: 'dark',
-    vars: { '--bg': '#08051a', '--bg-2': '#0f0b2a', '--bg-card': 'rgba(15,11,42,0.65)', '--text': '#94a3b8', '--text-h': '#f1f5f9', '--border': 'rgba(139,92,246,0.08)', '--accent': '#8b5cf6', '--accent-2': '#06b6d4', '--accent-3': '#f472b6', '--accent-bg': 'rgba(139,92,246,0.06)', '--shadow': '0 10px 40px rgba(0,0,0,0.5)', '--nav-bg': 'rgba(8,5,26,0.6)', '--grid-color': 'rgba(139,92,246,0.07)' },
-  },
-  {
     id: 'editorial', dot: '#d97757', scheme: 'light',
     vars: { '--bg': '#faf9f5', '--bg-2': '#ffffff', '--bg-card': 'rgba(255,255,255,0.8)', '--text': '#5a5850', '--text-h': '#141413', '--border': 'rgba(217,119,87,0.12)', '--accent': '#d97757', '--accent-2': '#6a9bcc', '--accent-3': '#788c5d', '--accent-bg': 'rgba(217,119,87,0.04)', '--shadow': '0 10px 40px rgba(217,119,87,0.08)', '--nav-bg': 'rgba(250,249,245,0.8)', '--grid-color': 'rgba(217,119,87,0.05)' },
   },
@@ -384,8 +380,6 @@ function ProjectModal({ project, onClose, tx }: { project: ProjectDetail; onClos
 function App() {
   const [selected, setSelected] = useState<ProjectDetail | null>(null)
   const [cmdOpen, setCmdOpen] = useState(false)
-  const [audioPlaying, setAudioPlaying] = useState(false)
-  const audioRef = useRef<HTMLAudioElement>(null)
   const photoClicksRef = useRef(0)
   const photoTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
 
@@ -452,12 +446,6 @@ function App() {
     }
   }
 
-  const handleVoice = () => {
-    const audio = audioRef.current
-    if (!audio) return
-    if (audioPlaying) { audio.pause(); audio.currentTime = 0; setAudioPlaying(false) }
-    else { audio.play(); setAudioPlaying(true) }
-  }
 
   return (
     <>
@@ -468,7 +456,6 @@ function App() {
       <CustomCursor />
       <ScrollProgress />
 
-      <audio ref={audioRef} key={lang} src={lang === 'nl' ? '/voice-nl.mp3' : '/voice-en.mp3'} onEnded={() => setAudioPlaying(false)} />
 
       <div className="section-blob blob-1" />
       <div className="section-blob blob-2" />
@@ -509,9 +496,6 @@ function App() {
             <div className="actions reveal reveal-delay-3">
               <a className="btn glow-btn" href="#projecten">{tx.ctaProjects}</a>
               <a className="btn outline-btn" href="#contact">{tx.ctaContact}</a>
-              <button className="btn voice-btn" onClick={handleVoice} type="button">
-                <span className={`voice-icon ${audioPlaying ? 'playing' : ''}`}>&#x1F50A;</span> {tx.listenIntro}
-              </button>
             </div>
             <div className="stage-badge reveal reveal-delay-4">
               <span className="pulse-dot" />

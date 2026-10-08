@@ -451,19 +451,9 @@ section {
 .glow-text {
   font-size: clamp(52px, 10vw, 96px);
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: -1px;
   display: inline-block;
-  background: linear-gradient(135deg, #c4b5fd, #8b5cf6, #06b6d4, #8b5cf6, #c4b5fd);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-flow 6s ease infinite;
-}
-
-@keyframes gradient-flow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  color: var(--text-h);
 }
 
 /* Typing effect */
@@ -514,21 +504,15 @@ section {
   height: 370px;
   border-radius: 24px;
   padding: 3px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent));
-  background-size: 300% 300%;
-  animation: gradient-flow 6s ease infinite;
-  box-shadow:
-    0 20px 60px rgba(139, 92, 246, 0.12),
-    0 0 0 1px rgba(139, 92, 246, 0.08);
+  background: var(--accent);
+  box-shadow: var(--shadow);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.6s ease;
 }
 
 .photo-frame:hover {
   transform: perspective(600px) rotateY(-5deg) rotateX(3deg) scale(1.03);
-  box-shadow:
-    0 30px 80px rgba(139, 92, 246, 0.2),
-    0 0 0 1px rgba(139, 92, 246, 0.15);
+  box-shadow: var(--shadow);
 }
 
 .photo-frame img {
@@ -1763,9 +1747,7 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-left, .reveal-right, .reveal-scale { transition-duration: 0.01ms; }
-  .photo-frame { animation: gradient-flow 6s ease infinite; }
   .skill-chip, .revealed .skill-chip { animation: none; }
-  .glow-text { animation: gradient-flow 6s ease infinite; }
   .tilt { transform: none !important; transition: none; }
   .glow-btn::before { display: none; }
   .scene-3d { display: none; }
