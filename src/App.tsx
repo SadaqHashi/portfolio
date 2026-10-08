@@ -380,6 +380,8 @@ function ProjectModal({ project, onClose, tx }: { project: ProjectDetail; onClos
 function App() {
   const [selected, setSelected] = useState<ProjectDetail | null>(null)
   const [cmdOpen, setCmdOpen] = useState(false)
+  const [audioPlaying, setAudioPlaying] = useState(false)
+  const audioRef = useRef<HTMLAudioElement>(null)
   const photoClicksRef = useRef(0)
   const photoTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
 
@@ -446,6 +448,12 @@ function App() {
     }
   }
 
+  const handleVoice = () => {
+    const audio = audioRef.current
+    if (!audio) return
+    if (audioPlaying) { audio.pause(); audio.currentTime = 0; setAudioPlaying(false) }
+    else { audio.play(); setAudioPlaying(true) }
+  }
 
   return (
     <>
@@ -455,6 +463,8 @@ function App() {
       <FloatingElements />
       <CustomCursor />
       <ScrollProgress />
+
+      <audio ref={audioRef} key={lang} src={lang === 'nl' ? '/voice-nl.mp3' : '/voice-en.mp3'} onEnded={() => setAudioPlaying(false)} />
 
 
       <div className="section-blob blob-1" />
@@ -496,6 +506,9 @@ function App() {
             <div className="actions reveal reveal-delay-3">
               <a className="btn glow-btn" href="#projecten">{tx.ctaProjects}</a>
               <a className="btn outline-btn" href="#contact">{tx.ctaContact}</a>
+              <button className="btn voice-btn" onClick={handleVoice} type="button">
+                <span className={`voice-icon ${audioPlaying ? 'playing' : ''}`}>&#x1F50A;</span> {tx.listenIntro}
+              </button>
             </div>
             <div className="stage-badge reveal reveal-delay-4">
               <span className="pulse-dot" />
