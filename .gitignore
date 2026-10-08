@@ -1,0 +1,8 @@
+node_modules
+dist
+*.local
+.DS_Store
+.agents/skills/baoyu-design/
+.agents/skills/release-skills/
+src/SkillsClaude/
+skills-lock.json
