@@ -513,7 +513,7 @@ function App() {
             </div>
           </div>
           <div className="hero-photo reveal-scale reveal-delay-2">
-            <div className="photo-frame" onClick={handlePhotoClick}><img src="/sadaq-hero.png" alt="Sadaq Hashi" /></div>
+            <div className="photo-frame" onClick={handlePhotoClick}><img src="/sadaq-hero.webp" alt="Sadaq Hashi" /></div>
           </div>
         </section>
 
