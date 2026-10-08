@@ -627,7 +627,7 @@ function App() {
             <p className="contact-text">{tx.contactText}<br />{tx.contactSub}</p>
             <div className="actions center" style={{ marginTop: 24 }}>
               <a className="btn glow-btn" href="mailto:sadaq.hashi@outlook.com">sadaq.hashi@outlook.com</a>
-              <a className="btn outline-btn" href="https://www.linkedin.com/in/sadaq-hashi-046808277/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a className="btn outline-btn" href="https://www.linkedin.com/in/sadaq-hashi-046808277/" target="_blank" rel="noreferrer"><img src="/linkedin.webp" alt="LinkedIn" className="btn-icon" /> LinkedIn</a>
             </div>
             <div className="actions center" style={{ marginTop: 12 }}>
               <a className="btn outline-btn" href="/CV Sadaq Hashi.pdf" download>{tx.ctaCV} (PDF)</a>

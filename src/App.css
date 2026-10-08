@@ -585,6 +585,13 @@ section {
   border: 1px solid rgba(139, 92, 246, 0.15);
 }
 
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
 .outline-btn:hover {
   transform: translateY(-3px);
   border-color: var(--accent);
