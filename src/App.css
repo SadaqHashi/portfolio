@@ -1313,27 +1313,6 @@ section {
   margin: 0 0 4px;
 }
 
-p.modal-todo {
-  display: inline-block;
-  background: rgba(234, 179, 8, 0.08);
-  border: 1px dashed rgba(234, 179, 8, 0.25);
-  border-radius: 6px;
-  padding: 6px 12px;
-  color: #eab308;
-  font-size: 14px;
-  font-weight: 500;
-  margin: 4px 0;
-}
-
-span.modal-todo {
-  background: rgba(234, 179, 8, 0.08);
-  border: 1px dashed rgba(234, 179, 8, 0.25);
-  border-radius: 6px;
-  padding: 4px 10px;
-  color: #eab308;
-  font-size: 13px;
-  font-weight: 500;
-}
 
 .modal-tech {
   display: flex;

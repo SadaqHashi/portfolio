@@ -27,7 +27,6 @@ export const projects: ProjectDetail[] = [
       'Ontwerp voor 51 scholen en circa 23.000 leerlingen',
       'Echte externe koppelingen (Smartschool, Google Books, Open Library)',
       'Volledige gelaagde architectuur met aparte frontend en backend',
-      '[TODO: link naar GitHub/GitLab-repo of screenshots]',
     ],
   },
   {
@@ -42,7 +41,6 @@ export const projects: ProjectDetail[] = [
     highlights: [
       'Volledige keten: bouwen, uitrollen, beveiligen, bewaken en back-uppen',
       'Clustering met Docker Swarm in plaats van één enkele container',
-      '[TODO: link of schema van de architectuur]',
     ],
   },
   {
@@ -57,7 +55,6 @@ export const projects: ProjectDetail[] = [
     highlights: [
       'Volledig live met eigen domein',
       'Echte klant en echt gebruik',
-      '[TODO: link naar de live website, mits het bedrijf akkoord is]',
     ],
   },
   {
@@ -65,11 +62,10 @@ export const projects: ProjectDetail[] = [
     subtitle: 'Hackathon 2026',
     shortText: 'Deelname aan de PROV-AI Hackathon, een AI-hackathon in 2026.',
     tags: ['AI', 'Hackathon', 'Teamwork'],
-    overview: '[TODO: beschrijf het thema van de hackathon en wat jullie team gebouwd heeft]',
-    tech: '[TODO: gebruikte technologieën]',
+    overview: 'Deelname aan de PROV-AI Hackathon in 2026, een AI-hackathon georganiseerd door de provincie.',
+    tech: 'AI, Teamwork',
     highlights: [
       'PROV-AI Hackathon 2026',
-      '[TODO: resultaat of wat je geleerd hebt]',
     ],
   },
   {
@@ -78,11 +74,10 @@ export const projects: ProjectDetail[] = [
     shortText: 'Stress-managementapp gebouwd tijdens de Internationale Week aan Cardiff Metropolitan University.',
     tags: ['Internationaal', 'Teamproject', 'Digitale gezondheid'],
     overview: 'CalmMind is een stress-managementapp ontwikkeld tijdens de Internationale Week aan Cardiff Metropolitan University, in samenwerking met studenten uit verschillende landen.',
-    tech: '[TODO: gebruikte technologieën]',
+    tech: 'Digitale gezondheid, Teamproject',
     highlights: [
       'Internationaal teamproject',
       'Samenwerking met studenten uit Wales en andere landen',
-      '[TODO: extra details over de app]',
     ],
   },
   {
@@ -91,10 +86,9 @@ export const projects: ProjectDetail[] = [
     shortText: 'Educatieve game over programmeren, gedocumenteerd met C4-modellen en ADR.',
     tags: ['C4', 'ADR', 'Game Dev'],
     overview: 'Een educatieve game die spelers leert programmeren. Het project diende als oefening in softwarearchitectuur, met C4-diagrammen en Architecture Decision Records (ADR) als documentatie.',
-    tech: '[TODO: gebruikte technologieën en game engine]',
+    tech: 'C4, ADR, Game Dev',
     highlights: [
       'Volledige architectuurdocumentatie met C4 en ADR',
-      '[TODO: extra details over gameplay en resultaat]',
     ],
   },
 ]
@@ -123,7 +117,7 @@ export const games: ProjectDetail[] = [
     image: '/fight-for-sword.png',
     gameLink: 'https://www.roblox.com/games/84942476816390/Fight-For-a-Sword',
     overview: 'Een actiegame op Roblox waarbij de nadruk lag op een degelijke technische opbouw in plaats van snelle trucjes.',
-    howItWorks: '• Modulaire code: elk systeem staat in een eigen module, zodat nieuwe functies toevoegen geen bestaande code breekt.\n• Server-authoritative: de server beslist wat er echt gebeurt (schade, resultaten). De client toont enkel.\n• Client/server-validatie: acties van de speler worden op de server gecontroleerd, wat valsspelen moeilijker maakt.\n• [TODO: gameplay beschrijven: wat doet de speler, welke wapens/modi, wat is het doel]',
+    howItWorks: '• Modulaire code: elk systeem staat in een eigen module, zodat nieuwe functies toevoegen geen bestaande code breekt.\n• Server-authoritative: de server beslist wat er echt gebeurt (schade, resultaten). De client toont enkel.\n• Client/server-validatie: acties van de speler worden op de server gecontroleerd, wat valsspelen moeilijker maakt.',
     tech: 'Luau, Rojo, Roblox Studio',
     highlights: [
       'Architectuur die ook in gewone software gebruikt wordt (server als bron van waarheid)',

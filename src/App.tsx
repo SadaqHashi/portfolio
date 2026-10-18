@@ -321,7 +321,6 @@ function CommandPalette({
 function renderTextLines(text: string) {
   return text.split('\n').map((line, i) => {
     if (!line.trim()) return null
-    if (line.includes('[TODO:')) return <p key={i} className="modal-todo">{line}</p>
     return <p key={i}>{line}</p>
   })
 }
@@ -367,7 +366,7 @@ function ProjectModal({ project, onClose, tx }: { project: ProjectDetail; onClos
         </div>
         <div className="modal-section">
           <h3>{tx.highlights}</h3>
-          <ul className="modal-highlights">{project.highlights.map((h, i) => <li key={i}>{h.includes('[TODO:') ? <span className="modal-todo">{h}</span> : h}</li>)}</ul>
+          <ul className="modal-highlights">{project.highlights.map((h, i) => <li key={i}>{h}</li>)}</ul>
         </div>
         {project.gameLink && <a href={project.gameLink} target="_blank" rel="noreferrer" className="modal-game-link">{tx.playRoblox} &rarr;</a>}
       </div>
